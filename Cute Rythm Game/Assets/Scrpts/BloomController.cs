@@ -5,6 +5,8 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class BloomController : MonoBehaviour
 {
+    //this script was made w/ chatgpt 
+
     public KeyCode bloomToggleKey;
 
     private PostProcessVolume postProcessVolume;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class NoteController : MonoBehaviour
 {
+    //this script was made w/ gameplusjames tutorial
+
     public bool canBePressed;
     public KeyCode keyToPress;
     
@@ -21,6 +23,7 @@ public class NoteController : MonoBehaviour
             if (canBePressed)
             {
                 gameObject.SetActive(false);
+                GameManager.instance.NoteHit();
             }
         }
     }
@@ -37,6 +40,7 @@ public class NoteController : MonoBehaviour
         if (other.tag == "Activator")
         {
             canBePressed = false;
+            GameManager.instance.NoteMissed();
         }
     }
 }
