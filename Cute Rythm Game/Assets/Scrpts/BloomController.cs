@@ -9,7 +9,7 @@ public class BloomController : MonoBehaviour
 
     private PostProcessVolume postProcessVolume;
     private Bloom bloomLayer;
-
+ 
     private void Start()
     {
         // Get the Post Process Volume component

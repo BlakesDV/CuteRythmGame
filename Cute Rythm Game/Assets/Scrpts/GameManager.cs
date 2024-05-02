@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VolumeProfile : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
+    public AudioSource music;
+    
     // Start is called before the first frame update
     void Start()
     {

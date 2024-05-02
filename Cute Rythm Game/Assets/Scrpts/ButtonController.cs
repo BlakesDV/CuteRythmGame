@@ -26,21 +26,13 @@ public class ButtonController : MonoBehaviour
         if (Input.GetKeyDown(keytopress))
         {
             spriterenderer.sprite = buttonpressed;
+            targetBloomIntensity = 50f;
         }
         if (Input.GetKeyUp(keytopress))
         {
             spriterenderer.sprite = buttondefault;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            targetBloomIntensity = 50f;
-        }
-        else if (Input.GetKeyUp(KeyCode.Space))
-        {
             targetBloomIntensity = 0f;
         }
-
         currentBloomIntensity = Mathf.MoveTowards(currentBloomIntensity, targetBloomIntensity, bloomChangeSpeed * Time.deltaTime);
         bloom.intensity.value = currentBloomIntensity;  
     }
