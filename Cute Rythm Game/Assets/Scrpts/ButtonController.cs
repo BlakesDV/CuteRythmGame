@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
+using static System.Runtime.CompilerServices.RuntimeHelpers;
+
 
 public class ButtonController : MonoBehaviour
 {
-    public VolumeProfile volumeProfile;
+    private SpriteRenderer spriterenderer;
+    public Sprite buttondefault;
+    public Sprite buttonpressed;
+    public KeyCode keytopress;
     private Bloom bloom;
     private float targetBloomIntensity = 0f;
     private float currentBloomIntensity = 0f;
@@ -12,24 +18,20 @@ public class ButtonController : MonoBehaviour
 
     void Start()
     {
-        if (!volumeProfile)
-        {
-            Debug.LogError("Volume Profile not assigned!");
-            enabled = false;
-            return;
-        }
-
-        volumeProfile.TryGet(out bloom);
-        if (bloom == null)
-        {
-            Debug.LogError("Bloom not found in the Volume Profile!");
-            enabled = false;
-            return;
-        }
+        spriterenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(keytopress))
+        {
+            spriterenderer.sprite = buttonpressed;
+        }
+        if (Input.GetKeyUp(keytopress))
+        {
+            spriterenderer.sprite = buttondefault;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             targetBloomIntensity = 50f;
@@ -40,30 +42,6 @@ public class ButtonController : MonoBehaviour
         }
 
         currentBloomIntensity = Mathf.MoveTowards(currentBloomIntensity, targetBloomIntensity, bloomChangeSpeed * Time.deltaTime);
-        bloom.intensity.value = currentBloomIntensity;
+        bloom.intensity.value = currentBloomIntensity;  
     }
-
-    //private SpriteRenderer spriteRenderer;
-    //public Sprite buttonDefault;
-    //public Sprite buttonPressed;
-    //public KeyCode keyToPress;
-
-    //// Start is called before the first frame update
-    //void Start()
-    //{
-    //    spriteRenderer = GetComponent<SpriteRenderer>();
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    if (Input.GetKeyDown(keyToPress))
-    //    {
-    //        spriteRenderer.sprite = buttonPressed;
-    //    }
-    //    if (Input.GetKeyUp(keyToPress))
-    //    {
-    //        spriteRenderer.sprite = buttonDefault;
-    //    }
-    //}
 }
