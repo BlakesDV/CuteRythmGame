@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         if (!startPlaying)
         {
+            //change any key to space, specify in canvas "press space to start"
             if (Input.anyKeyDown)
             {
                 startPlaying = true;
