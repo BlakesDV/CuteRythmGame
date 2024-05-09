@@ -34,6 +34,6 @@ public class ButtonController : MonoBehaviour
             targetBloomIntensity = 0f;
         }
         currentBloomIntensity = Mathf.MoveTowards(currentBloomIntensity, targetBloomIntensity, bloomChangeSpeed * Time.deltaTime);
-        bloom.intensity.value = currentBloomIntensity;  
+        //bloom.intensity.value = currentBloomIntensity;  
     }
 }

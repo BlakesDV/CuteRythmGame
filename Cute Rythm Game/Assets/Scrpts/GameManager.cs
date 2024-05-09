@@ -13,12 +13,19 @@ public class GameManager : MonoBehaviour
 
     public int currentScore;
     public int scorePerNote = 100;
+    public int scorePerGreatNote = 125;
+    public int scorePerPerfectNote = 150;
     public TMP_Text scoreText;
     public TMP_Text streakText;
 
     public int currentStreak;
     public int multiplierTracker;
     public int[] multiplierThresholds;
+    public float totalScore;
+    public float okHits;
+    public float greatHits;
+    public float perfectHits;
+    public float missedHits;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +34,7 @@ public class GameManager : MonoBehaviour
         scoreText.text = "0";
         streakText.text = "x0";
         currentStreak = 1;
+        totalScore = FindObjectsOfType<NoteController>().Length;
     }
 
     // Update is called once per frame
@@ -35,7 +43,7 @@ public class GameManager : MonoBehaviour
         if (!startPlaying)
         {
             //change any key to space, specify in canvas "press space to start"
-            if (Input.anyKeyDown)
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 startPlaying = true;
                 beatDrop.hasStarted = true;
@@ -62,6 +70,21 @@ public class GameManager : MonoBehaviour
         streakText.text = "x" + currentStreak;
     }
 
+    public void OkHit()
+    {
+        currentScore += scorePerNote * currentStreak;
+        NoteHit();
+    }
+    public void GreatHit()
+    {
+        currentScore += scorePerGreatNote * currentStreak;
+        NoteHit();
+    }
+    public void PerfectHit()
+    {
+        currentScore += scorePerPerfectNote * currentStreak;
+        NoteHit();
+    }
     public void NoteMissed()
     {
         Debug.Log("no");

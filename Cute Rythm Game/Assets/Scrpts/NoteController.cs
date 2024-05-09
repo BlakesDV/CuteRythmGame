@@ -23,7 +23,21 @@ public class NoteController : MonoBehaviour
             if (canBePressed)
             {
                 gameObject.SetActive(false);
-                GameManager.instance.NoteHit();
+                //GameManager.instance.NoteHit();
+                if (Mathf.Abs(transform.position.y) > -3)
+                {
+                    GameManager.instance.OkHit();
+                }
+                else if (Mathf.Abs(transform.position.y) > -3.5)
+                {
+                    GameManager.instance.GreatHit();
+
+                }
+                else 
+                {
+                    GameManager.instance.PerfectHit();
+
+                }
             }
         }
     }
