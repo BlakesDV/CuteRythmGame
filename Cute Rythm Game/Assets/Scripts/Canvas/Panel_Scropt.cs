@@ -12,7 +12,14 @@ public class Panel_Scropt : MonoBehaviour
     public void ClosePanel()
     {
         GetComponent<Animator>().SetTrigger("Close");
-
+    }
+    public void StarterOpen()
+    {
+        GetComponent<Animator>().SetTrigger("StarterOpen");
+    }
+    public void StarterClose()
+    {
+        GetComponent<Animator>().SetTrigger("StarterClose");
     }
 
     public void SetTimePlay()
